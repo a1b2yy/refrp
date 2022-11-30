@@ -1,6 +1,7 @@
 import socket
 import base64
 import rsa
+import threading
 
 def vpn_server(socks,addr,server_loacl_port,time_out):
 
@@ -18,6 +19,13 @@ def vpn_server(socks,addr,server_loacl_port,time_out):
     rm_host.connect(("127.0.0.1",server_loacl_port))
     rm_host.settimeout(time_out)
 
+    te1 = threading.Thread(target=t1,args=(rm_host,socks,server_private_key))
+    te1.start()
+    te2 = threading.Thread(target=t2,args=(rm_host,socks,local_public_key))
+    te2.start()
+
+
+def t1(rm_host,socks,server_private_key):
     while True:
         try:
             data = socks.recv(8192)
@@ -39,6 +47,9 @@ def vpn_server(socks,addr,server_loacl_port,time_out):
             print("ERROR")
             break
 
+
+def t2(rm_host,socks,local_public_key):
+    while True:
         try:
             recv_data = rm_host.recv(22048)
             length = len(recv_data)
