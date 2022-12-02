@@ -20,17 +20,17 @@ def t1(rm_host,socks):
             rm_host.send(data)
             if len(data)<1:
                 print("fuck you fuck you loop")
-                #rm_host.close()
-                #socks.close()
+                rm_host.close()
+                socks.close()
                 return 0
         except:
-            print("ERRORd")
-            #rm_host.close()
-            #socks.close()
+            print("ERROR")
+            rm_host.close()
+            socks.close()
             break
         #print(recv_data)
-        #rm_host.close()
-        #socks.close()
+        rm_host.close()
+        socks.close()
 
 
 def t2(rm_host,socks):
@@ -40,14 +40,14 @@ def t2(rm_host,socks):
             socks.send(recv_data)
             if len(recv_data)<1:
                 print("fuck you fuck you loop")
-                #rm_host.close()
-                #socks.close()
+                rm_host.close()
+                socks.close()
                 return 0
         except:
             print("ERRORs")
-            #rm_host.close()
-            #socks.close()
+            rm_host.close()
+            socks.close()
             return 0
         #print(recv_data)
-        #rm_host.close()
-        #socks.close()
+        rm_host.close()
+        socks.close()
